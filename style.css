@@ -1,0 +1,47 @@
+#home {
+  display: flex;          
+  justify-content: space-between; 
+  align-items: center;     
+  padding: 20px;
+}
+
+#home .text {
+  flex: 1;                
+}
+
+#home .image img {
+  max-width: 100%;        
+  height: auto;
+  border-radius: 10px;
+}
+
+
+#home .text h1 {
+  font-size: 3rem;    
+  font-weight: 800;       
+  line-height: 1.2;        
+  color: #1a1a1a;           
+  max-width: 600px;        
+}
+
+#home .text button {
+  margin-top: 20px;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: #e11d48;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#home .text button:hover {
+  background-color: #be123c; 
+}
+
+#home .image img {
+  max-width: 600px;  
+  border-radius: 12px;
+}
