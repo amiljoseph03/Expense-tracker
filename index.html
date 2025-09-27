@@ -7,6 +7,7 @@
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
         <link rel="stylesheet" href="style.css">
 </head>
+ 
 <body>
      <header>
     <nav class="bg-white border-gray-200 px-4 lg:px-6 py2.5 dark:bg-pink-900">
@@ -55,9 +56,10 @@
 <section id="home">
    
     <div class="text">
-         <h1>Financial planning with clarity and confidence</h1>
+         <h1>Financial planning with clarity and confidence</h1> <br>
 
-    <button>Get Started</button>
+    <!-- <button>Get Started</button> -->
+     <a href="#myModal" class="get-started-btn">Get Started</a>
     </div>
 
     <div class="image">
@@ -65,6 +67,30 @@
     </div>
 
 
+
+  <!-- Modal -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <a href="#" class="close">&times;</a>
+
+      <form>
+        <img src="./images/logo.jpg" alt="Logo">
+        <h3>Make savings</h3>
+
+        <i class="fas fa-user"></i>
+        <input type="text" id="uname" placeholder="Username">
+
+        <input type="text" id="anumber" placeholder="Account number">
+
+        <i class="fas fa-lock"></i>
+        <input type="password" id="pswrd" placeholder="Password">
+
+        <br>
+        <button type="button" class="btn-register">Register</button>
+        <button type="button" class="btn-signin" onclick="window.location.href='login.html'">Sign in</button>
+      </form>
+    </div>
+  </div>
 </section>
 </body>
 </html>
