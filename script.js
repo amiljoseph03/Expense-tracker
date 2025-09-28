@@ -33,57 +33,105 @@ function login() {
   }
 }
 
-//  deposit
+//  income
 
-function deposit() {
-  let amount = parseFloat(document.getElementById('depamount').value);
-  let account = document.getElementById('acno').value;
 
-  let stored = localStorage.getItem(account);
+  let totalIncome = 0;
+  let totalExpense = 0;
+  let incomeTransactions = [];
+  let expenseTransactions = [];
 
-  let user = JSON.parse(stored);
+  function income() {
+    let amount = parseFloat(document.getElementById('inamount').value);
+    let type = document.getElementById('intype').value;
 
-  if (!user.balance) {
-    user.balance = 0;
-  }
-  user.balance = user.balance + amount;
+    if (!isNaN(amount) && amount > 0 && type !== '') {
+      totalIncome += amount;
+      incomeTransactions.push({ label: type, amount: amount, date: new Date() });
 
-  localStorage.setItem(account, JSON.stringify(user));
+      document.getElementById('result').innerHTML = `
+        <div style="border:1px solid green; padding:10px; margin-top:10px; border-radius:8px;">
+          <h4>Total Income: ₹${totalIncome}</h4>
+          <p>Last added: ${type} - ₹${amount}</p>
+        </div>
+      `;
+      updateTables();
+    } else {
+      alert('Please enter valid income details');
+    }
 
-  alert(`Deposit successful! New balance: ₹${user.balance}`);
-
-  result.innerHTML = `
-  <h3>Deposit successful! New balance: ₹${user.balance}</h3>
-  `;
-
-  document.getElementById('depamount').value = '';
-  document.getElementById('acno').value = '';
-}
-
-// withdraw
-
-function withdraw() {
-  let amount = parseFloat(document.getElementById('withamount').value);
-  let account = document.getElementById('withacno').value;
-
-  let stored = localStorage.getItem(account);
-
-  let user = JSON.parse(stored);
-
-  if (!user.balance) {
-    user.balance = 0;
+    document.getElementById('inamount').value = '';
+    document.getElementById('intype').value = '';
   }
 
-  if (user.balance >= amount) {
-    user.balance -= amount;
+  function expense() {
+    let amount = parseFloat(document.getElementById('expamount').value);
+    let type = document.getElementById('exptype').value;
 
-    localStorage.setItem(account, JSON.stringify(user));
-    alert('success');
-    withdrawresult.innerHTML = `
-        <h3>Withdrawal successful! New balance: ₹${user.balance}</h3>
-        `;
-  } else {
-    document.getElementById('withdrawresult').innerHTML = `
-        <h3>insufficient balance ! available balance is ₹${user.balance}</h3>`;
+    if (!isNaN(amount) && amount > 0 && type !== '') {
+      if (amount > totalIncome - totalExpense) {
+        alert('Not enough balance for this expense!');
+        return;
+      }
+
+      totalExpense += amount;
+      expenseTransactions.push({ label: type, amount: amount, date: new Date() });
+
+      document.getElementById('withdrawresult').innerHTML = `
+        <div style="border:1px solid red; padding:10px; margin-top:10px; border-radius:8px;">
+          <h4>Total Expense: ₹${totalExpense}</h4>
+          <p>Last spent: ${type} - ₹${amount}</p>
+          <h4>Remaining Balance: ₹${totalIncome - totalExpense}</h4>
+        </div>
+      `;
+      updateTables();
+    } else {
+      alert('Please enter valid expense details');
+    }
+
+    document.getElementById('expamount').value = '';
+    document.getElementById('exptype').value = '';
   }
-}
+
+  function updateTables() {
+    let incomeTbody = document
+      .getElementById('incomeTable')
+      .getElementsByTagName('tbody')[0];
+    let expenseTbody = document
+      .getElementById('expenseTable')
+      .getElementsByTagName('tbody')[0];
+
+    incomeTbody.innerHTML = '';
+    expenseTbody.innerHTML = '';
+
+    let runningBalance = 0;
+
+    // Fill Income Table
+    incomeTransactions.forEach((t) => {
+      runningBalance += t.amount;
+      let row = incomeTbody.insertRow();
+      row.insertCell(0).innerText = t.label;
+      row.insertCell(1).innerText = '+' + t.amount; 
+      row.insertCell(2).innerText = '₹' + runningBalance; 
+      row.insertCell(3).innerText = t.date.toLocaleString(); 
+    });
+
+    runningBalance = totalIncome; 
+
+    //  Expense Table
+    expenseTransactions.forEach((t) => {
+      runningBalance -= t.amount;
+      let row = expenseTbody.insertRow();
+      row.insertCell(0).innerText = t.label; 
+      row.insertCell(1).innerText = '-' + t.amount; 
+      row.insertCell(2).innerText = '₹' + runningBalance; 
+      row.insertCell(3).innerText = t.date.toLocaleString(); 
+    });
+
+    document.getElementById('summaryBox').innerHTML = `
+      <h4>Total Income: ₹${totalIncome} | Total Expense: ₹${totalExpense} | Balance: ₹${
+      totalIncome - totalExpense
+    }</h4>
+    `;
+  }
+
