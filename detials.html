@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="detials.css">
+</head>
+
+<style>
+    * {
+  margin: 0;
+  padding: 0;
+}
+body {
+    background-image: url('./images/bg2.jpg'); /* use colon and correct path */
+    background-size: cover;      /* make it cover the whole page */
+    background-position: center; /* center the image */
+    background-repeat: no-repeat; /* prevent tiling */
+}
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: aquamarine;
+  padding: 10px 20px;
+}
+
+.logo img {
+  height: 50px;   
+  width: auto;   
+}
+
+.rl {
+  display: flex;
+  gap: 15px;
+}
+
+
+
+
+.welcome {
+    text-align: center;
+    padding: 40px 20px;
+    /* background-color: #007bff; */
+    color: white;
+}
+
+.welcome h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.welcome h3 {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.whole {
+    display: flex;
+  
+    gap: 30px;               
+    margin: 40px 20px;       
+    flex-wrap: wrap;          
+}
+
+.container1, .container2 {
+    background-color: rgb(98, 160, 160);
+    padding: 30px;
+    border-radius: 22px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    width: 250px;           
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container1 h3, .container2 h3 {
+    margin-bottom: 20px;
+}
+
+.container1 input, .container2 input {
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 16px;
+}
+
+.container1 button, .container2 button {
+    width: 100%;
+    padding: 12px 0;
+    border-radius: 25px;
+    border: none;
+    background-color: #3bd17f;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.container2 button{
+  background-color: #eaa055;
+}
+
+.container1 button:hover, .container2 button:hover {
+    background-color: #0056b3;
+}
+
+#result, #withdrawresult {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 500;
+}
+
+
+
+.btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  border: 1px solid black;
+  color: black;
+  background-color: aquamarine;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: aquamarine;
+}
+</style>
+<body>
+
+
+    
+    <nav>
+        <div class="logo">
+            <img src="./images/logo.jpg" alt="">
+        </div>
+    <div class="rl">
+    <!-- <a href="register.html" class="btn"> Register</a> -->
+    <a href="index.html" class="btn">Logout</a>
+    </div>
+    </nav>
+    <!-- ............  -->
+
+
+  
+    <div class="welcome">
+    <h1>Welcome</h1>
+    <h3>Online banking services</h3>
+    </div>
+
+ <div class="whole">
+<div class="container1">
+    <h3>Deposit</h3>
+
+    <input type="text" name="" id="depamount" placeholder="Enter amount">
+    <input type="text" name="" id="acno" placeholder="Enter account number">
+
+    <button onclick="deposit()">Deposit</button>
+    <div id="result">
+
+    </div>
+</div>
+
+
+<div class="container2">
+    <h3>Withdraw</h3>
+
+    <input type="text" name="" id="withamount" placeholder="Enter amount">
+    <input type="text" name="" id="withacno" placeholder="Enter account number">
+
+    <button onclick="withdraw()">Withdraw</button>
+
+    <div id="withdrawresult"></div>
+</div>
+
+</div>
+</body>
+<script src="script.js"></script>
+
+</html>

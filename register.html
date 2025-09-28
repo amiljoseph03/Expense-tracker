@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+
+    <style>
+
+        input {
+    max-width: 250px;
+    width: 100%;
+    background: #f0f0f0;
+    margin: 10px 0;
+    height: 30px;
+    border-radius: 50px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    padding: 0 0.4rem;
+    position: relative;
+    animation-name: onloadAnim;
+    animation-duration: 1s;
+}
+.input-group i {
+    text-align: center;
+    line-height: 40px;
+    color: #acacac;
+    transition: 0.5s;
+    font-size: 15px;
+}
+.btn {
+    width: 100%;
+    height: 40px;
+    max-width: 250px;
+    background: #fff;
+    border: 2px solid #f26200; 
+    border-radius: 25px;
+    color: #f26200;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.3s;
+    margin-top: 10px;
+     display: grid;
+       display: flex;              
+    justify-content: center;   
+    align-items: center;  
+}
+.btn:hover {
+    background: #f26200;
+    color: #fff;
+}
+img {
+  height: 10%;
+  width: 10%;
+  display: block;         
+  margin: 0 auto;         
+}
+.container {
+  display: flex;
+  justify-content: center;  
+  align-items: center;     
+  height: 100vh;            
+}
+.container2 {
+  display: flex;
+  justify-content: center;  
+  align-items: center;     
+  height: 90vh;            
+  width: 40%;
+  background-color: #acacac;
+
+    border-radius: 12px;      
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); 
+}
+form {
+  display: flex;
+  flex-direction: column;  
+  align-items: center;     
+}
+
+
+        
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="container2">
+    <form action="">
+
+        <img src="./images/logo.jpg" alt="">
+        <h3>My Bank</h3>
+        <i class="fas fa-user"></i>
+        <input type="text" name="" id="uname" placeholder="Username">
+        <input type="text" name="" id="anumber" placeholder="Account number">
+         <i class="fas fa-lock"></i>
+        <input type="text" name="" id="pswrd" placeholder="Password">
+
+          <button type="button" class="btn" onclick="register()">Register</button>
+          <button type="button" class="btn" onclick="window.location.href='login.html'">Sign in</button>
+
+
+    </form>
+</div>
+  </div>
+</body>
+<script src="script.js"></script>
+</html>
