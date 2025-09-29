@@ -1,37 +1,98 @@
-// register
+// // register
+
+// function register() {
+//   detials = {
+//     username: uname.value,
+//     acnumber: anumber.value,
+//     passwoed: pswrd.value,
+//   };
+
+//   if (detials.acnumber in localStorage) {
+//     alert('already registered');
+//   } else {
+//     localStorage.setItem(detials.acnumber, JSON.stringify(detials));
+//     alert('registered successfully');
+//   }
+// }
+
+// // login
+
+// function login() {
+//   let theacno = document.getElementById('acno').value;
+//   let thepassword = document.getElementById('pswrd').value;
+
+//   let storedacno = localStorage.getItem(theacno);
+//   // let storedpassword=localStorage.getItem(passwoed)
+//   let user = JSON.parse(storedacno);
+
+//   if (user.passwoed === thepassword) {
+//     alert('success');
+//     window.location.assign('detials.html');
+//   } else {
+//     alert('faild');
+//   }
+// }
+
+
+// ........ 
 
 function register() {
-  detials = {
-    username: uname.value,
-    acnumber: anumber.value,
-    passwoed: pswrd.value,
+  let details = {
+    username: document.getElementById('uname').value,
+    email: document.getElementById('email').value,
+    password: document.getElementById('pswrd').value,
   };
 
-  if (detials.acnumber in localStorage) {
-    alert('already registered');
+  if (localStorage.getItem(details.email)) {
+    alert('Already registered with this email');
   } else {
-    localStorage.setItem(detials.acnumber, JSON.stringify(detials));
-    alert('registered successfully');
+    localStorage.setItem(details.email, JSON.stringify(details));
+    alert('Registered successfully');
   }
 }
 
-// login
+
+
+// show username on welcome page
+window.onload = function () {
+  // get the last logged-in email (you should store it at login)
+  let loggedInEmail = localStorage.getItem("loggedInUser");
+
+  if (loggedInEmail) {
+    let user = JSON.parse(localStorage.getItem(loggedInEmail));
+    if (user) {
+      document.getElementById("displayName").innerText = user.username;
+    }
+  }
+};
 
 function login() {
-  let theacno = document.getElementById('acno').value;
-  let thepassword = document.getElementById('pswrd').value;
+  let theEmail = document.getElementById('email').value;
+  let thePassword = document.getElementById('pswrd').value;
 
-  let storedacno = localStorage.getItem(theacno);
-  // let storedpassword=localStorage.getItem(passwoed)
-  let user = JSON.parse(storedacno);
+  let storedUser = localStorage.getItem(theEmail);
 
-  if (user.passwoed === thepassword) {
-    alert('success');
-    window.location.assign('detials.html');
+  if (storedUser) {
+    let user = JSON.parse(storedUser);
+
+    if (user.password === thePassword) {
+      alert('Login success');
+      // save logged-in user
+      localStorage.setItem('loggedInUser', theEmail);
+      window.location.assign('detials.html');
+    } else {
+      alert('Incorrect password');
+    }
   } else {
-    alert('faild');
+    alert('No account found with this email');
   }
 }
+
+
+
+
+
+
 
 //  income
 
